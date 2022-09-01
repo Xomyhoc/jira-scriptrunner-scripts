@@ -29,7 +29,7 @@ def customFieldManager = ComponentAccessor.customFieldManager
 //**************************************************************************************
 //Set AuthenticationContext as admin
 def admin = userManager.getUserByName("Administrator")
-log.debug("Login as: $admin.displayName")
+log.info("Login as: $admin.displayName")
 authContext.setLoggedInUser(admin)
 //**************************************************************************************
 //Scriptrunner dynamic field
@@ -172,5 +172,5 @@ else
 {}
 //**************************************************************************************
 //Clear AuthenticationContext as admin
-log.debug("logout: $admin.displayName")
+log.info("logout: $admin.displayName")
 authContext.clearLoggedInUser()

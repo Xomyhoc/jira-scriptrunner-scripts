@@ -1,4 +1,5 @@
 //ScriptRunner Console
+//Sending a custom email from the scriptrunner console
 import com.atlassian.jira.component.ComponentAccessor
 import com.atlassian.jira.user.ApplicationUser
 import com.atlassian.jira.mail.Email
@@ -55,7 +56,7 @@ def mailServer = ComponentAccessor.mailServerManager.defaultSMTPMailServer
         'Success'
         } catch (MailException e) 
         {
-            log.debug("Send mail failed with error: ${e.message}" )
+            log.error("Send mail failed with error: ${e.message}" )
         }
     else
     {}
