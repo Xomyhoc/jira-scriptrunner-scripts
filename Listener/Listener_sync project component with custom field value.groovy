@@ -87,8 +87,3 @@ else{}
 //Clear AuthenticationContext as admin
 log.info("logout: $admin.displayName")
 authContext.clearLoggedInUser()
-
-
-
-
-
