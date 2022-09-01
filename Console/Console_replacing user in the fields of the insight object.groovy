@@ -35,7 +35,7 @@ authContext.setLoggedInUser(admin)
 //Scriptrunner dynamic field
 @ShortTextInput(label = "Issue", description = "Enter a issue key")
 String inputIssue
-def issue= issueManager.getIssueObject(inputIssue)
+def issue = issueManager.getIssueObject(inputIssue)
 @UserPicker(label = "Replaceable User", description = "Select a user")
 ApplicationUser replaceableUser
 @UserPicker(label = "Replacement User", description = "Select a user")

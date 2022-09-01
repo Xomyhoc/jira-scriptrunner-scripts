@@ -17,9 +17,9 @@ log.setLevel(Level.INFO)
 //**************************************************************************************
 //Get issue
 //If you need some field value from the issue
-@ShortTextInput(label = "Issue", description = "Enter a short issue summary")
-String issueSummaryTextInput
-def issue = ComponentAccessor.issueManager.getIssueByCurrentKey("${issueSummaryTextInput}")
+@ShortTextInput(label = "Issue", description = "Enter a issue key")
+String inputIssue
+def issue = issueManager.getIssueObject(inputIssue)
 //Get user sender
 @UserPicker(label = "Sender", description = "Select a user")
 ApplicationUser sender
@@ -57,3 +57,5 @@ def mailServer = ComponentAccessor.mailServerManager.defaultSMTPMailServer
         {
             log.debug("Send mail failed with error: ${e.message}" )
         }
+    else
+    {}
