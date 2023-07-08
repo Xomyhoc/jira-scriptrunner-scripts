@@ -13,11 +13,10 @@ def customFieldManager = ComponentAccessor.customFieldManager
 //**************************************************************************************
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
-log = Logger.getLogger("Console")
+log = Logger.getLogger("Console -> Send email from console")
 log.setLevel(Level.INFO)
 //**************************************************************************************
 //Get issue
-//If you need some field value from the issue
 @ShortTextInput(label = "Issue", description = "Enter a issue key")
 String inputIssue
 def issue = issueManager.getIssueObject(inputIssue)
@@ -44,19 +43,19 @@ def mailServer = ComponentAccessor.mailServerManager.defaultSMTPMailServer
     email.setSubject("$subject")
     email.setBody("$body")
     email.setFrom(sender.getEmailAddress())
-    try {
-        // This is needed to avoid the exception about IMAPProvider
-        ContextClassLoaderSwitchingUtil.runInContext(SMTPMailServer.classLoader) 
+        try 
         {
-            mailServer.send(email)
-        }
-        log.info('Mail sent')
-        log.info(recipient.getEmailAddress())
-        log.info(sender.getEmailAddress())
-        'Success'
-        } catch (MailException e) 
+            // This is needed to avoid the exception about IMAPProvider
+            ContextClassLoaderSwitchingUtil.runInContext(SMTPMailServer.classLoader) 
+            {
+                mailServer.send(email)
+            }
+            log.info('Email sent successfully')
+            log.info(recipient.getEmailAddress())
+            log.info(sender.getEmailAddress())
+        } 
+        catch (MailException e) 
         {
             log.error("Send mail failed with error: ${e.message}" )
         }
-    else
-    {}
+    else{}
